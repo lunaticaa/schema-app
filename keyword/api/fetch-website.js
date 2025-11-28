@@ -1,6 +1,8 @@
-import fetch from 'node-fetch';
-import https from 'https';
-import http from 'http';
+const https = require('https');
+const http = require('http');
+
+// Use built-in fetch (available in Node.js 18+)
+const fetch = globalThis.fetch || (async () => { throw new Error('fetch not available'); })();
 
 // Custom HTTPS agent that ignores certificate errors
 const httpsAgent = new https.Agent({
@@ -14,7 +16,7 @@ const httpAgent = new http.Agent({
   timeout: 10000
 });
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });

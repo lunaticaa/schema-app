@@ -155,6 +155,7 @@ function SEOChecker() {
       let html = null
 
       // Determine backend URL (Vercel API in production, localhost in development)
+      // Determine backend URL (Vercel API in production, localhost in development)
       const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
       const backendUrl = isProduction 
         ? '/api/fetch-website'
@@ -168,7 +169,8 @@ function SEOChecker() {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify({ url: normalizedUrl })
+          body: JSON.stringify({ url: normalizedUrl }),
+          timeout: 10000
         })
 
         if (backendResponse.ok) {
@@ -181,7 +183,7 @@ function SEOChecker() {
           console.log(`Backend returned status ${backendResponse.status}`)
         }
       } catch (err) {
-        console.log(`Backend fetch failed: ${err.message}`)
+        console.log(`Backend fetch failed: ${err.message}. Falling back to CORS proxies...`)
       }
 
       // Fallback: Use CORS proxies if backend is not available
