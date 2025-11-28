@@ -154,9 +154,15 @@ function SEOChecker() {
       // Try to fetch from backend server first (handles CORS properly)
       let html = null
 
+      // Determine backend URL (Vercel API in production, localhost in development)
+      const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+      const backendUrl = isProduction 
+        ? '/api/fetch-website'
+        : 'http://localhost:3001/api/fetch-website'
+
       try {
-        console.log('Attempting to fetch via backend server...')
-        const backendResponse = await fetch('http://localhost:3001/api/fetch-website', {
+        console.log(`Attempting to fetch via ${isProduction ? 'Vercel API' : 'backend server'}...`)
+        const backendResponse = await fetch(backendUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -169,7 +175,7 @@ function SEOChecker() {
           const data = await backendResponse.json()
           if (data.html && data.html.length > 100) {
             html = data.html
-            console.log('Successfully fetched via backend server')
+            console.log(`Successfully fetched via ${isProduction ? 'Vercel API' : 'backend server'}`)
           }
         } else {
           console.log(`Backend returned status ${backendResponse.status}`)
