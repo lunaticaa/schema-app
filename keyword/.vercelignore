@@ -1,0 +1,12 @@
+node_modules
+.git
+.gitignore
+README.md
+SETUP.md
+*.local
+.vscode
+.idea
+dist
+.env*.local
+pnpm-lock.yaml
+yarn.lock
