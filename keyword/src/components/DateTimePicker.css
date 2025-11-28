@@ -1,0 +1,74 @@
+.datetime-picker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-icon {
+  font-size: 1.3em;
+  color: #667eea;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.datetime-input {
+  flex: 1;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.datetime-input::placeholder {
+  color: #999;
+}
+
+.datetime-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background-color: #f0f0f0;
+  transition: all 0.2s ease;
+}
+
+.datetime-input::-webkit-calendar-picker-indicator:hover {
+  background-color: #e0e0e0;
+}
+
+.datetime-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  background-color: #f8f9ff;
+}
+
+.datetime-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.datetime-hint::before {
+  content: "📆";
+  font-size: 0.9em;
+}
+
+.datetime-hint-placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Make the input more prominent */
+.datetime-input {
+  padding: 14px 12px !important;
+  border: 2px solid #667eea !important;
+  background-color: #fafbff !important;
+  color: #333 !important;
+}
+
+.datetime-input:hover {
+  border-color: #5a6fd8 !important;
+  background-color: #f5f7ff !important;
+}
